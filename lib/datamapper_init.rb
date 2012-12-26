@@ -2,7 +2,8 @@
 #require 'data_mapper'
 
 ## Set up the logger
-DataMapper::Logger.new($stdout, :warning)
+## Silenced. Uncomment this line to get a lot of verbosity.
+#DataMapper::Logger.new($stdout, :info)
 
 
 ## TODO: If you are not using PostGRES, change this. It is based on Postgres.app from Heroku

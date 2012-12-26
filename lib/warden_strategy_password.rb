@@ -22,7 +22,7 @@ Warden::Strategies.add(:password) do
     #   success!(user)
     puts "Password authenticate with params:#{params}"
 
-    user = User.authenticate(params['email'], params['password'])
+    user = User.authenticate(params['email'], params['password'], params['remember_me'])
     if user
       success!(user)
     else

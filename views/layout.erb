@@ -25,17 +25,18 @@
               <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                 <% if current_user && is_admin? %><span class="label label-important">Admin</span><% end %>
                 <% if warden.authenticated? %>
-                    Hello, <%= current_user.username %>
+                    Hello, <%= current_user.display_name %>
                 <% else %>
-                    Hello, Guest! <b class="caret"></b>
+                    Hello, Guest!
                 <% end %>
-
+                <b class="caret"></b>
               </a>
               <ul class="dropdown-menu">
                 <% if warden.authenticated? %>
                     <li><a href="/auth/logout">Logout</a></li>
                 <% else %>
                     <li><a href="/auth/login">Login</a></li>
+                    <li><a href="/auth/register">Register</a></li>
                 <% end %>
               </ul>
             </li>

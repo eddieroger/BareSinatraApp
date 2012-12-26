@@ -1,6 +1,7 @@
 module BareApp
   class Base < Sinatra::Base
     register Sinatra::Warden
+    helpers Sinatra::CsrfHelper
     use Rack::Flash
 
     configure do
@@ -18,8 +19,8 @@ module BareApp
     end
 
     use Warden::Manager do |manager|
-      manager.default_strategies(:password)
-      manager.failure_app = BareApp::Base
+      manager.default_strategies(:cookie, :password)
+      manager.failure_app = BareApp::AuthenticationApp
       manager.serialize_into_session {|user| user.id}
       manager.serialize_from_session {|id| User.get(id)}
     end # Warden::Manager

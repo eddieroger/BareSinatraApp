@@ -45,3 +45,14 @@ I have made several decisions here that I know will be unpopular simply beacuse 
 + **Bootstrap**. I read [here](http://24ways.org/2012/how-to-make-your-site-look-half-decent/) that Bootstrap democratizes design. I couldn't agree more. I am not a designer, so having a default project that isn't ugly is great. Note in that article, Bootstrap is easy to make non-ugly *and* not look like Bootstrap, and I encourage walking through her steps. It is worthwhile.
 + **Vanilla CSS and JS**. I'm not using SCSS, CoffeeScript, LESS or any of those fancy processing languages. To the best of my knowledge, the downside is potential performance. But, I don't know them, and I don't know how to optimize them. Likewise, I wanted the barrier to entry for this project low, so adding more languages to learn is the opposite of that. CSS and Javascript aren't scary. Learn them, then convert to whatever engine you like.
 + **Authentication**. All of it lives in the Authentication app. Better or worse. I prefer it all be in one place. This also means all auth activities are prefixed "/auth", as compared to the more RESTful "/session". It still uses REST, of course.
++ **Registration**. The entire registration flow was built with one very specific use-case in mind. I am building it with private sites in mind, and as such it will require an approval. This behavior can easily be changed to your liking, either by setting approved default to true, or modifying the query in User#authenticate.
+
+
+Credits, Inspiration and Further Reading
+----------------------------------------
+
+For the most part, things are attributed in the source. But for more overreaching things, it's hard to find one place. So, they go here.
+
++ **The Sinatra Book** - [http://sinatra-book.gittr.com/](http://sinatra-book.gittr.com/)
++ *DataMapper ** - [http://datamapper.org/](http://datamapper.org/)
++ **CSRF Protection ** - [http://stackoverflow.com/questions/11451161/sinatra-csrf-authenticity-tokens](http://stackoverflow.com/questions/11451161/sinatra-csrf-authenticity-tokens)

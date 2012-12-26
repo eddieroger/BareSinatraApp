@@ -1,0 +1,47 @@
+<div class="page-header">
+  <% if @new_user %>
+  <h1>
+    Register<br/>
+    <small>Access to this site requires approval. After your registration is completed and approved, you will receive an email confirming your account. You can email user@host.com with questions.</small>
+  </h1>
+  <% else %>
+  <h1>Edit Your Profile</h1>
+  <% end %>
+</div>
+
+<form class="form-horizontal" method="post" action="/auth/register">
+  <%= csrf_tag %>
+  <div class="control-group">
+    <label class="control-label" for="email">Email</label>
+    <div class="controls">
+      <input type="text" id="email" name="user.email" placeholder="Email" value="<%= @user.email %>">
+    </div>
+  </div>
+  <div class="control-group">
+    <label class="control-label" for="password">Password</label>
+    <div class="controls">
+      <input type="password" id="password" name="user.password" placeholder="Password" value="">
+    </div>
+  </div>
+  <div class="control-group">
+    <label class="control-label" for="password_confirmation">Confirm Password</label>
+    <div class="controls">
+      <input type="password" id="password_confirmation" name="user.password_confirmation" placeholder="Password" value="">
+    </div>
+  </div>
+  <div class="control-group">
+    <label class="control-label" for="password_confirmation">First Name</label>
+    <div class="controls">
+      <input type="text" id="first_name" placeholder="First Name" name="user.first_name" value="<%= @user.first_name %>">
+    </div>
+  </div>
+  <div class="control-group">
+    <label class="control-label" for="password_confirmation">Last Name</label>
+    <div class="controls">
+      <input type="text" id="last_name" placeholder="Last Name" name="user.last_name" value="<%= @user.last_name %>">
+    </div>
+  </div>
+
+  <button class="btn btn-large btn-primary" type="submit">Save</button>
+
+</form>
