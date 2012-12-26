@@ -1,8 +1,8 @@
 ## Creates a default environment for DataMapper and preps it for use
-require 'data_mapper'
+#require 'data_mapper'
 
 ## Set up the logger
-DataMapper::Logger.new($stdout, :debug)
+DataMapper::Logger.new($stdout, :warning)
 
 
 ## TODO: If you are not using PostGRES, change this. It is based on Postgres.app from Heroku

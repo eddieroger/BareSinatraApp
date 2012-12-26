@@ -1,0 +1,48 @@
+/* EddieRoger.com Site-Specific CSS*/
+
+.container-wrapper {
+    background: url("/img/gray_jean.png") repeat 0 0;
+    width: 100%;
+}
+.container-narrow {
+    max-width:700px;
+    margin: 0 auto;
+    /*background-color: #FFFFFF;*/
+    padding:10px;
+}
+
+/* Fonts */
+h1, h2, h3, h4, h5, h6 {
+    font-family: 'Raleway', Helvetica, Arial, sans-serif;
+/*    font-size: 50px;*/
+    line-height: 70px;
+
+}
+
+p {
+    font-family: 'Goudy Bookletter 1911', Georgia, Times, serif;
+    font-size: 15px;
+    line-height: 25px;
+}
+
+a {
+    color: #666666;
+}
+
+body {
+    background: url("/img/debut_dark.png") repeat 0 0;
+}
+
+.pagination {
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.bottom {
+    color: #FFFFFF;
+    max-width:700px;
+    margin: 0 auto;
+    /*background-color: #FFFFFF;*/
+    padding:10px;
+    min-height: 150px;
+}

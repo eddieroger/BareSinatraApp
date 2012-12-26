@@ -36,4 +36,12 @@ Things to do
 + Scan through app/_base.rb and make sure things are to your liking. I chose to have all apps inherit this one, so I don't have to repeat myself on things like 404 and 500, and so Warden is globally available
 + I am using DataMapper for a lightweight ORM. You need to pick the right adapter and configure it. I am using PostGRES because Heroku uses it, and they make an app available for Mac that basically emulates their production environment. Plus, I've had issues with SQLite on Heroku. Of course, you don't need any of it if you don't want.
 
+Decision Rationalization
+------------------------
 
+I have made several decisions here that I know will be unpopular simply beacuse they were made. But they were my decisions, and you don't have to agree with them. Here's why I did what I did.
+
++ **ERb**. I know ERb. I use it. I come from verbose languages like PHP (<?php echo $var;?>) and found ERb a natural extension of it. Likewise, I came from Rails, and it was the default when I learned it. I'm not afraid of writing some HTML, so it's the right language *for me*.
++ **Bootstrap**. I read [here](http://24ways.org/2012/how-to-make-your-site-look-half-decent/) that Bootstrap democratizes design. I couldn't agree more. I am not a designer, so having a default project that isn't ugly is great. Note in that article, Bootstrap is easy to make non-ugly *and* not look like Bootstrap, and I encourage walking through her steps. It is worthwhile.
++ **Vanilla CSS and JS**. I'm not using SCSS, CoffeeScript, LESS or any of those fancy processing languages. To the best of my knowledge, the downside is potential performance. But, I don't know them, and I don't know how to optimize them. Likewise, I wanted the barrier to entry for this project low, so adding more languages to learn is the opposite of that. CSS and Javascript aren't scary. Learn them, then convert to whatever engine you like.
++ **Authentication**. All of it lives in the Authentication app. Better or worse. I prefer it all be in one place. This also means all auth activities are prefixed "/auth", as compared to the more RESTful "/session". It still uses REST, of course.

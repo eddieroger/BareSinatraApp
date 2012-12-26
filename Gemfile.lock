@@ -59,6 +59,9 @@ GEM
     json_pure (1.7.5)
     multi_json (1.5.0)
     rack (1.4.1)
+    rack-flash3 (1.0.1)
+      rack
+      rack
     rack-protection (1.2.0)
       rack
     rack-test (0.6.1)
@@ -81,6 +84,8 @@ GEM
       rack (>= 1.0.0)
     tilt (1.3.3)
     uuidtools (2.1.3)
+    warden (1.2.1)
+      rack (>= 1.0)
 
 PLATFORMS
   ruby
@@ -89,6 +94,8 @@ DEPENDENCIES
   data_mapper
   dm-postgres-adapter
   rack
+  rack-flash3
   sinatra
   sinatra-contrib
   thin
+  warden
