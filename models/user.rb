@@ -24,7 +24,7 @@ class User
   validates_confirmation_of :password, :if => :password_required?
 
   validates_with_block :password_confirmation do
-    if self.password_confirmation.length < 6
+    if password_required? && self.password_confirmation.length < 6
       return [false, "Password must be more than"]
     else
       return true

@@ -1,0 +1,10 @@
+<h1>
+	<%= @customer.name %>
+	<small><%= @customer.applications.count %> apps</small>
+</h1>
+
+<ul>
+	<% @customer.applications.each do |app| %>
+	<li><%= app.name %></li>
+	<% end %>
+</ul>

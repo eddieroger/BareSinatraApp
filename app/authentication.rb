@@ -8,6 +8,9 @@ module BareApp
     end
 
     get '/login' do
+      if env['warden'].authenticated?
+        return "Hello"
+      end
       erb :"auth/login", :layout => :authentication_app
     end
 
@@ -15,7 +18,7 @@ module BareApp
       # check credentials for login
       env['warden'].authenticate!
       flash[:success] = "You have been logged in!"
-      if env['rack.session']['return_to']
+      if env['rack.session']['return_to'] && env['rack.session']['return_to'] != '/auth/login'
         redirect(env['rack.session']['return_to'])
       else
         redirect('/')

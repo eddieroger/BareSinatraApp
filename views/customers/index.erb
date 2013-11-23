@@ -1,0 +1,10 @@
+<h1>Welcome to Direct Sending Provisioning Support</h1>
+<p>This tool is meant to help manage MobilePush-provisioned accounts by holding and setting their various sending credentials. Use of this system is limited to the Mobile team. This tool can make some pretty dangerous changes, so please be careful and use only if you know what you're doing.</p>
+
+<hr width="75%" />
+
+<h1>Customers <small>To be replaced with a datagrid on the QUICK.</small></h1>
+
+<% @customers.each do |c| %>
+	<a href="/customers/<%= c.memberID %>"><%= c.memberID %> - <%= c.name %></a>
+<% end %>

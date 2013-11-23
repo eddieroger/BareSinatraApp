@@ -1,8 +1,11 @@
 module BareApp
   class Base < Sinatra::Base
     register Sinatra::Warden
+    register Sinatra::ConfigFile
     helpers Sinatra::CsrfHelper
     use Rack::Flash
+
+    config_file File.join(APP_ROOT, 'app.yaml')
 
     configure do
       set :raise_errors, false
@@ -24,6 +27,10 @@ module BareApp
       manager.serialize_into_session {|user| user.id}
       manager.serialize_from_session {|id| User.get(id)}
     end # Warden::Manager
+
+    before do
+      @app_name = settings.app_name
+    end
 
   end # Base
 end # BareApp

@@ -1,9 +1,9 @@
 GEM
   remote: https://rubygems.org/
   specs:
-    addressable (2.2.8)
-    backports (2.6.1)
-    bcrypt-ruby (3.0.1)
+    addressable (2.3.5)
+    backports (3.3.5)
+    bcrypt-ruby (3.1.2)
     daemons (1.1.9)
     data_mapper (1.2.0)
       dm-aggregates (~> 1.2.0)
@@ -15,14 +15,14 @@ GEM
       dm-transactions (~> 1.2.0)
       dm-types (~> 1.2.0)
       dm-validations (~> 1.2.0)
-    data_objects (0.10.10)
+    data_objects (0.10.13)
       addressable (~> 2.1)
     dm-aggregates (1.2.0)
       dm-core (~> 1.2.0)
     dm-constraints (1.2.0)
       dm-core (~> 1.2.0)
-    dm-core (1.2.0)
-      addressable (~> 2.2.6)
+    dm-core (1.2.1)
+      addressable (~> 2.3)
     dm-do-adapter (1.2.0)
       data_objects (~> 0.10.6)
       dm-core (~> 1.2.0)
@@ -51,44 +51,45 @@ GEM
       uuidtools (~> 2.1)
     dm-validations (1.2.0)
       dm-core (~> 1.2.0)
-    do_postgres (0.10.10)
-      data_objects (= 0.10.10)
-    eventmachine (0.12.10)
+    do_postgres (0.10.13)
+      data_objects (= 0.10.13)
+    eventmachine (1.0.3)
     fastercsv (1.5.5)
-    json (1.7.5)
-    json_pure (1.7.5)
-    multi_json (1.5.0)
-    rack (1.4.1)
+    json (1.8.1)
+    json_pure (1.8.1)
+    multi_json (1.8.2)
+    rack (1.5.2)
     rack-contrib (1.1.0)
       rack (>= 0.9.1)
-    rack-flash3 (1.0.1)
+    rack-flash3 (1.0.5)
       rack
+    rack-protection (1.5.1)
       rack
-    rack-protection (1.2.0)
-      rack
-    rack-test (0.6.1)
+    rack-test (0.6.2)
       rack (>= 1.0)
     rack_csrf (2.4.0)
       rack (>= 0.9)
-    sinatra (1.3.3)
-      rack (~> 1.3, >= 1.3.6)
-      rack-protection (~> 1.2)
-      tilt (~> 1.3, >= 1.3.3)
-    sinatra-contrib (1.3.2)
+    shotgun (0.9)
+      rack (>= 1.0)
+    sinatra (1.4.4)
+      rack (~> 1.4)
+      rack-protection (~> 1.4)
+      tilt (~> 1.3, >= 1.3.4)
+    sinatra-contrib (1.4.1)
       backports (>= 2.0)
-      eventmachine
+      multi_json
       rack-protection
       rack-test
-      sinatra (~> 1.3.0)
+      sinatra (~> 1.4.0)
       tilt (~> 1.3)
     stringex (1.5.1)
-    thin (1.5.0)
+    thin (1.6.1)
       daemons (>= 1.0.9)
-      eventmachine (>= 0.12.6)
+      eventmachine (>= 1.0.0)
       rack (>= 1.0.0)
-    tilt (1.3.3)
-    uuidtools (2.1.3)
-    warden (1.2.1)
+    tilt (1.4.1)
+    uuidtools (2.1.4)
+    warden (1.2.3)
       rack (>= 1.0)
 
 PLATFORMS
@@ -101,6 +102,7 @@ DEPENDENCIES
   rack-contrib
   rack-flash3
   rack_csrf
+  shotgun
   sinatra
   sinatra-contrib
   thin

@@ -3,7 +3,7 @@ module BareApp
 
 
     get '/' do
-      erb "Hello, world!"
+      redirect '/customers'
     end
 
     get '/protected' do

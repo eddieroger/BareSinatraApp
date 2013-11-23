@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Bare App</title>
+  <title><%= @app_name %></title>
   <script src="http://code.jquery.com/jquery-latest.js"></script>
   <script src="/js/bootstrap.min.js"></script>
 
@@ -13,11 +13,10 @@
       <div class="navbar-inner">
         <div class="container">
 
-          <a class="brand" href="#">BaseSinatraApp</a>
+          <a class="brand" href="/"><%= @app_name %></a>
 
           <ul class="nav">
-            <li><a href="/">Home</a></li>
-            <li><a href="/protected">Protected Place</a></li>
+            <!-- <li><a href="/customers">Customers Home</a></li> -->
           </ul>
 
           <ul class="nav pull-right">

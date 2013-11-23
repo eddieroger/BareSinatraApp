@@ -7,4 +7,4 @@
 
 
 ## TODO: If you are not using PostGRES, change this. It is based on Postgres.app from Heroku
-DataMapper.setup(:default, ENV['DATABASE_URL'] || "postgres://localhost/bareapp")
+DataMapper.setup(:default, ENV['DATABASE_URL'] || "postgres://localhost/provisioning")
