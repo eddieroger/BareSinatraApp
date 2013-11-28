@@ -98,6 +98,7 @@ PLATFORMS
 DEPENDENCIES
   data_mapper
   dm-postgres-adapter
+  dm-serializer
   rack
   rack-contrib
   rack-flash3

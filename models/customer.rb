@@ -8,7 +8,7 @@ class Customer
 	property :name, String, :required => true
 	property :memberID, String, :required => true, :unique => true
 	property :stack, String, :required => true
-	property :oauthToken, String, :required => true
+	property :oauthToken, String, :required => false
 
 
 end

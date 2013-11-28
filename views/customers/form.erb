@@ -1,0 +1,47 @@
+<% if @new %>
+<h1>New Customer</h1>
+<% else %>
+<h1>Editing: <%= @customer.name %></h1>
+<% end %>
+
+<% if @customer.errors.count > 0 %>
+<div class="alert alert-error">
+	<p>The following errors need to be corrected:</p>
+	<ul>
+		<% @customer.errors.each do |e| %>
+		<li><%= e[0] %></li>
+		<% end %>
+	</ul>
+</div>
+<% end %>
+
+<form role="form" id="newCustomerForm" action="/customers/<%=@customer.memberID%>" method="post">
+	<div class="form-group">
+		<label for="memberID">Member ID</label>
+		<input type="text" class="form-control" id="memberID" name="memberID" placeholder="MID" value='<%= @customer.memberID %>'>
+	</div>
+	<div class="form-group">
+		<label for="name">Customer Name</label>
+		<input type="text" class="form-control" id="name" name="name" placeholder="Northern Trail Outfitters" value='<%= @customer.name %>'>
+	</div>
+	<div class="form-group">
+		<label for="oauthToken">OAuth Token</label>
+		<input type="text" class="form-control" id="oauthToken" name="oauthToken" placeholder="Long, Long String" value="<%= @customer.oauthToken %>">
+	</div>		 
+	<div class="form-group">
+		<label for="stack">Stack</label>
+		<select class="form-control" name="stack">
+			<option <% if @customer.stack == 'S1' %>selected<%end%> >S1</option>
+			<option <% if @customer.stack == 'S4' %>selected<%end%>>S4</option>
+			<option <% if @customer.stack == 'S6' %>selected<%end%>>S6</option>
+		</select>
+	</div> 
+<!-- 		  
+	<div class="form-group">
+	    <label for="exampleInputFile">File input</label>
+	    <input type="file" id="exampleInputFile">
+	    <p class="help-block">Example block-level help text here.</p>
+	</div> 
+-->
+	<input type="submit">
+</form>

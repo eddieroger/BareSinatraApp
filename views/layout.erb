@@ -1,15 +1,18 @@
 <!DOCTYPE html>
-<html>
+<html class="fuelux" lang="en">
 <head>
   <title><%= @app_name %></title>
+  <script src="http://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.4.4/underscore-min.js"></script>
   <script src="http://code.jquery.com/jquery-latest.js"></script>
-  <script src="/js/bootstrap.min.js"></script>
+  <script src="http://www.fuelcdn.com/fuelux/2.4.1/loader.min.js" type="text/javascript"></script>
+  <script src="/js/serializeToObject.js" type="text/javascript"></script>
 
-  <link rel="stylesheet" href="/css/bootstrap.min.css">
+  <link href="//www.fuelcdn.com/fuelux/2.4.1/css/fuelux.min.css" rel="stylesheet" type="text/css">
+  <link href="//www.fuelcdn.com/fuelux/2.4.1/css/fuelux-responsive.css" rel="stylesheet" type="text/css">
 </head>
 <body style="padding-top: 50px;">
 
-    <div class="navbar navbar-fixed-top">
+    <div class="navbar navbar-inverse navbar-fixed-top">
       <div class="navbar-inner">
         <div class="container">
 
@@ -19,7 +22,7 @@
             <!-- <li><a href="/customers">Customers Home</a></li> -->
           </ul>
 
-          <ul class="nav pull-right">
+          <!-- <ul class="nav pull-right">
             <li class="dropdown">
               <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                 <% if current_user && is_admin? %><span class="label label-important">Admin</span><% end %>
@@ -39,7 +42,7 @@
                 <% end %>
               </ul>
             </li>
-          </ul>
+          </ul> -->
         </div>
       </div>
     </div>

@@ -2,7 +2,9 @@ module BareApp
   class Base < Sinatra::Base
     register Sinatra::Warden
     register Sinatra::ConfigFile
+    register Sinatra::RespondWith
     helpers Sinatra::CsrfHelper
+
     use Rack::Flash
 
     config_file File.join(APP_ROOT, 'app.yaml')
