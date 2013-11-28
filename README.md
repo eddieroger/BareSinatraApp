@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 BareSinatraApp
 ==============
 
@@ -56,3 +57,9 @@ For the most part, things are attributed in the source. But for more overreachin
 + **The Sinatra Book** - [http://sinatra-book.gittr.com/](http://sinatra-book.gittr.com/)
 + *DataMapper ** - [http://datamapper.org/](http://datamapper.org/)
 + **CSRF Protection ** - [http://stackoverflow.com/questions/11451161/sinatra-csrf-authenticity-tokens](http://stackoverflow.com/questions/11451161/sinatra-csrf-authenticity-tokens)
+=======
+ProvisioningSupport
+===================
+
+Direct Sending Provisioning tool
+>>>>>>> c4492d1bb435344e8ef09eef6d87cc36bf1bef41
