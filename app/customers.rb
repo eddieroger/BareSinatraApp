@@ -212,7 +212,7 @@ module BareApp
       # Then do the request
       # uri = URI.parse("https://requestb.in") # later, fullURL
       uri = URI.parse(fullURL) # later, fullURL
-      http = Net::HTTP.new(uri.host, uri.port)
+      http = ::Net::HTTP.new(uri.host, uri.port)
       http.use_ssl = true
       http.verify_mode = OpenSSL::SSL::VERIFY_NONE
       http.ssl_version = :SSLv3
