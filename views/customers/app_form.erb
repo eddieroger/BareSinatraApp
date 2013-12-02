@@ -22,6 +22,9 @@
 	</div>
 	<div class="form-group">
 		<label for="encodedCodeAtAppId">Encoded App ID</label>
+		<select id="codeAtApps">
+			<option value='other'>Other</option>
+		</select>
 		<input type="text" class="form-control" id="encodedCodeAtAppId" name="encodedCodeAtAppId" placeholder="Long, Long String" value="<%= @application.encodedCodeAtAppId %>">
 	</div>		 
 	<div class="form-group">
@@ -76,5 +79,38 @@ $(document).ready(function() {
 			$("#gcm").show();
 		}
 	});
+
+	$("#codeAtApps").change(function() {
+		$( "#codeAtApps option:selected" ).each(function() {
+	      console.log(this);
+	      console.log(this.value);
+	      $("#encodedCodeAtAppId").val(this.value);
+	      $("#encodedCodeAtAppId").prop('disabled', true);
+	    });
+
+	    if (this.value == 'other') {
+	    	$("#encodedCodeAtAppId").prop('disabled', false);
+	    };
+	});
+
+
+	$.ajax({
+		type: 'GET',
+		url: "<%= @customer.stack_url %>/rest/beta/push/application/",
+		async: true,
+		dataType: 'json',
+		beforeSend: function(xhr){xhr.setRequestHeader('Accept', 'application/json'); xhr.setRequestHeader('Authorization', "OAuth oauth_token=<%=@customer.oauthToken%>");},
+		// headers: {'Authorization' : "OAuth oauth_token=<%=@customer.oauthToken%>", 'Accept' : 'application/json'},
+		success: function(data) {
+			console.log(data);
+			$.each(data.entry, function(idx, value) {
+				$("#codeAtApps").append("<option value='" + value.id + "'>" + value.name + "</option>");
+			});
+		},
+		error: function() {
+			console.log("Failed to get apps.");
+		}
+	});
+
 });
 </script>

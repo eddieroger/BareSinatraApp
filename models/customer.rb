@@ -11,4 +11,12 @@ class Customer
 	property :oauthToken, Text, :required => false
 
 
+	def stack_url
+		if self.stack == 'S1' 
+	        fullURL = "http://app.exacttarget.com"
+	    else
+	    	fullURL = "http://app.#{self.stack.downcase}.exacttarget.com"
+	    end
+	    return fullURL
+	end
 end
