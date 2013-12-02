@@ -239,7 +239,3 @@ module BareApp
 
   end
 end
-
-class Net::HTTPResponse
-
-end
