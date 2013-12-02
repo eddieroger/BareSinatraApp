@@ -194,7 +194,7 @@ $(function () {
                                 data: <%= @customer.applications.to_json(:only => [:id, :name, :encodedCodeAtAppId, :platform]) %>,
                                 formatter: function (items) {
                                 	$.each(items, function(index, item) {
-                                		item.options = "<button type='button' class='btn btn-primary' id='provision' onclick='doProvision(\"" + item.encodedCodeAtAppId + "\");'>Provision</button> <button type='button' class='btn btn-danger' id='delete' onclick='doDelete(\"" + item.encodedCodeAtAppId + "\");'>Delete</button>";
+                                		item.options = "<% if @customer.oauthToken %><button type='button' class='btn btn-primary' id='provision' onclick='doProvision(\"" + item.encodedCodeAtAppId + "\");'>Provision</button><%end%> <button type='button' class='btn btn-danger' id='delete' onclick='doDelete(\"" + item.encodedCodeAtAppId + "\");'>Delete</button>";
                                 	});
                                 },
                                 delay: 250
