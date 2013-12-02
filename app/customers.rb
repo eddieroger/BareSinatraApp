@@ -215,7 +215,7 @@ module BareApp
       http = Net::HTTP.new(uri.host, uri.port)
       http.use_ssl = true
       http.verify_mode = OpenSSL::SSL::VERIFY_NONE
-      http.ssl_version = :SSLv2
+      # http.ssl_version = :SSLv2
       request = Net::HTTP::Post.new(uri.path)
       request.add_field('Authorization', "OAuth oauth_token=#{customer.oauthToken}")
       request.add_field('Accept', 'application/json')
