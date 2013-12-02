@@ -189,12 +189,10 @@ module BareApp
 
       # First prep the URL based on stack
       if customer.stack == 'S1' 
-        fullURL = "https://app.exacttarget.com/rest/beta/push/application/#{application.encodedCodeAtAppId}"
+        fullURL = "http://app.exacttarget.com/rest/beta/push/application/#{application.encodedCodeAtAppId}"
       else
-        fullURL = "https://app.#{customer.stack.downcase}.exacttarget.com/rest/beta/push/application/#{application.encodedCodeAtAppId}";
+        fullURL = "http://app.#{customer.stack.downcase}.exacttarget.com/rest/beta/push/application/#{application.encodedCodeAtAppId}";
       end
-
-      # fullURL = "http://requestb.in/p2bj2ap2"
 
       # Then the payload by platform
       if application.platform == 'APNS'
@@ -213,23 +211,26 @@ module BareApp
       # uri = URI.parse("https://requestb.in") # later, fullURL
       uri = URI.parse(fullURL) # later, fullURL
       http = Net::HTTP.new(uri.host, uri.port)
-      http.use_ssl = true
-      http.verify_mode = OpenSSL::SSL::VERIFY_NONE
-      # http.ssl_version = :SSLv2
-      request = Net::HTTP::Post.new(uri.path)
-      request.add_field('Authorization', "OAuth oauth_token=#{customer.oauthToken}")
-      request.add_field('Accept', 'application/json')
-      request.add_field('Content-Type', 'application/json')
-      request.add_field('Accept-Encoding', 'gzip;q=0,deflate,sdch')
-      request.body = {:id => application.encodedCodeAtAppId, :configuration => configPayload}.to_json
-
-      puts "POSTing to #{uri}"
+      # http.use_ssl = true
+      # http.verify_mode = OpenSSL::SSL::VERIFY_PEER
+      # http.ssl_version = :SSLv3
+      # request = Net::HTTP::Post.new(uri.path)
+      # request.add_field('Authorization', "OAuth oauth_token=#{customer.oauthToken}")
+      # request.add_field('Accept', 'application/json')
+      # request.add_field('Content-Type', 'application/json')
+      # request.add_field('Accept-Encoding', 'gzip;q=0,deflate,sdch')
+      # request.body = {:id => application.encodedCodeAtAppId, :configuration => configPayload}.to_json
+      # res = http.request(request)
+      # puts "POSTing to #{uri}"
       # puts "OAuth: #{customer.oauthToken}"
       # puts "Payload: #{{:id => application.encodedCodeAtAppId, :configuration => configPayload}.to_json}"
-      response = http.request(request)
-      puts "POST complete."
+      
+      payload = {:id => application.encodedCodeAtAppId, :configuration => configPayload}
+      headers = {'Authorization' => "OAuth oauth_token=#{customer.oauthToken}", 'Accept' => 'application/json', 'Content-Type' => 'application/json'}
+      res = HTTParty.post(fullURL.to_str, :body => payload.to_json, :headers => headers)
 
-      if response.class == Net::HTTPSuccess
+      puts res.inspect
+      if res.code == 200
         return true
       else
         return false
