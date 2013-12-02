@@ -8,6 +8,8 @@ gem 'rack-contrib'
 gem 'rack_csrf'
 gem 'warden'
 
+gem 'httparty'
+
 gem 'data_mapper'
 gem 'dm-postgres-adapter'
 gem 'dm-serializer'

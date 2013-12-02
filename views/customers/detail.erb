@@ -5,7 +5,7 @@
 <div class="container">
 <h1>
 	<%= @customer.name %>
-	<small><%= @customer.applications.count %> apps</small>
+	<small><%= @customer.memberID %> | <%= @customer.applications.count %> apps</small>
 </h1>
 </div>
 
@@ -89,6 +89,47 @@
 
 <script src="/js/datasource.js" type="text/javascript"></script>
 <script  type="text/javascript">
+function doDelete(appId) {
+	console.log("Deleting: " + appId);
+	if (confirm("Are you sure you want to delete?\n\nThis is unavoidable permanent and incredibly undoable.")) {
+		$.ajax({
+			url: '/customers/<%= @customer.memberID %>/apps/' + appId, 
+			type: 'DELETE',
+			accepts: 'application/json',
+			success: function(data) {
+				window.location.reload();
+			},
+			error: function() {
+				alert("Error occured.");
+			}
+		});
+	};
+
+	return false;
+};
+
+function doProvision(appId) {
+	console.log("Provisioning: " + appId);
+	if (confirm("This will submit a provisioning call IN PRODUCTION for this customer. Doing so can be bad if the credentials aren't setup correctly.\n\nAre you sure you want to do this?")) {
+		var fullURL = '/customers/<%=@customer.memberID%>/apps/' + appId + '/provision';
+		console.log(fullURL);
+		$.ajax({
+			type: 'GET',
+			url: fullURL,
+			headers: {'Accept' : 'application/json'},
+			success: function(data) {
+				console.log(data);
+				alert("Provisioning complete. Customer should be ready to send!");
+			},
+			error: function() {
+				alert("Provisioning failed. Sorry.");
+			}
+		});
+	};
+
+	return false;
+};
+
 $(function () {
 	var dataSource = new StaticDataSource({
                                 columns: [
@@ -113,14 +154,17 @@ $(function () {
                                         	sortable: true
                                         }
                                 ],
-                                data: <%= @customer.applications.to_json %>,
+                                data: <%= @customer.applications.to_json(:only => [:id, :name, :encodedCodeAtAppId, :platform]) %>,
                                 formatter: function (items) {
                                 	$.each(items, function(index, item) {
-                                		item.options = "<button type=\"button\" class=\"btn btn-default\" onclick=\"window.location.href='/customers/" + <%=@customer.memberID%> + "/apps/" +  item.encodedCodeAtAppId + "/edit'\">Edit</button>";
+                                		item.options = "<button type='button' class='btn btn-primary' id='provision' onclick='doProvision(\"" + item.encodedCodeAtAppId + "\");'>Provision</button> <button type='button' class='btn btn-danger' id='delete' onclick='doDelete(\"" + item.encodedCodeAtAppId + "\");'>Delete</button>";
                                 	});
                                 },
                                 delay: 250
                         });
 	$('#MyGrid').datagrid({ dataSource: dataSource, stretchHeight: false });
+});
+$(document).ready(function() {
+
 });
 </script>
