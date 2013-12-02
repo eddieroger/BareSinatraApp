@@ -5,7 +5,7 @@
 <div class="container">
 <h1>
 	<%= @customer.name %>
-	<small><%= @customer.memberID %> | <%= @customer.applications.count %> apps</small>
+	<small><%= @customer.applications.count %> apps</small>
 </h1>
 </div>
 
@@ -111,18 +111,55 @@ function doDelete(appId) {
 function doProvision(appId) {
 	console.log("Provisioning: " + appId);
 	if (confirm("This will submit a provisioning call IN PRODUCTION for this customer. Doing so can be bad if the credentials aren't setup correctly.\n\nAre you sure you want to do this?")) {
-		var fullURL = '/customers/<%=@customer.memberID%>/apps/' + appId + '/provision';
+		var fullURL = '/customers/<%=@customer.memberID%>/apps/' + appId;
 		console.log(fullURL);
 		$.ajax({
 			type: 'GET',
 			url: fullURL,
+			async: false,
 			headers: {'Accept' : 'application/json'},
 			success: function(data) {
 				console.log(data);
-				alert("Provisioning complete. Customer should be ready to send!");
+
+				var newFullURL;
+				var dataToPost;
+
+				if (data.customer.stack == 's1') {
+					newFullURL = "https://app.exacttarget.com/rest/beta/push/application/dkk2Z05hNVExVTZkYkVCQ2tLMmp6UToxMTc6MA";
+				} else {
+					newFullURL = "https://app." + data.customer.stack.toLowerCase() + ".exacttarget.com/rest/beta/push/application/dkk2Z05hNVExVTZkYkVCQ2tLMmp6UToxMTc6MA";
+				}
+				console.log(newFullURL);
+
+				if (data.application.platform == "APNS") {
+					dataToPost = {id: data.application.encodedCodeAtAppId, configuration: {iosEndpointType:"APNS", apnsCertificate: data.application.credential, apnsCertificatePassword: data.application.credentialPassword}};
+				} else if (data.application.platform == "GCM") {
+					dataToPost = {id: data.application.encodedCodeAtAppId, configuration: {androidEndpointType:"GCM", androidEndpoint: "https://android.googleapis.com/gcm/send", gcmApiKey: data.application.credential}};
+				}
+				console.log(dataToPost);
+
+				var oauthHeaderValue = "OAuth oauth_token=" + data.customer.oauthToken;
+
+				$.ajax({
+					url: 'http://requestb.in/mye5ycmy', 
+					type: 'POST',
+					async: false,
+					contentType: 'application/json',
+					accept: 'application/json',
+					data: JSON.stringify(dataToPost),
+					dataType: 'jsonp',
+					crossDomain: true,
+					// headers: {"Authorization":oauthHeaderValue},
+					success: function(data) {
+						alert("Success");
+					},
+					error: function() {
+						alert("Error occured.");
+					}
+				});
 			},
 			error: function() {
-				alert("Provisioning failed. Sorry.");
+				alert("Failed to get app.");
 			}
 		});
 	};
