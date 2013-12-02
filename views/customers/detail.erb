@@ -111,7 +111,7 @@ function doDelete(appId) {
 function doProvision(appId) {
 	console.log("Provisioning: " + appId);
 	if (confirm("This will submit a provisioning call IN PRODUCTION for this customer. Doing so can be bad if the credentials aren't setup correctly.\n\nAre you sure you want to do this?")) {
-		var fullURL = '/customers/<%=@customer.memberID%>/apps/' + appId;
+		var fullURL = '/customers/<%=@customer.memberID%>/apps/' + appId + '/provision';
 		console.log(fullURL);
 		$.ajax({
 			type: 'GET',
@@ -119,44 +119,7 @@ function doProvision(appId) {
 			async: false,
 			headers: {'Accept' : 'application/json'},
 			success: function(data) {
-				console.log(data);
-
-				var newFullURL;
-				var dataToPost;
-
-				if (data.customer.stack == 's1') {
-					newFullURL = "https://app.exacttarget.com/rest/beta/push/application/dkk2Z05hNVExVTZkYkVCQ2tLMmp6UToxMTc6MA";
-				} else {
-					newFullURL = "https://app." + data.customer.stack.toLowerCase() + ".exacttarget.com/rest/beta/push/application/dkk2Z05hNVExVTZkYkVCQ2tLMmp6UToxMTc6MA";
-				}
-				console.log(newFullURL);
-
-				if (data.application.platform == "APNS") {
-					dataToPost = {id: data.application.encodedCodeAtAppId, configuration: {iosEndpointType:"APNS", apnsCertificate: data.application.credential, apnsCertificatePassword: data.application.credentialPassword}};
-				} else if (data.application.platform == "GCM") {
-					dataToPost = {id: data.application.encodedCodeAtAppId, configuration: {androidEndpointType:"GCM", androidEndpoint: "https://android.googleapis.com/gcm/send", gcmApiKey: data.application.credential}};
-				}
-				console.log(dataToPost);
-
-				var oauthHeaderValue = "OAuth oauth_token=" + data.customer.oauthToken;
-
-				$.ajax({
-					url: 'http://requestb.in/mye5ycmy', 
-					type: 'POST',
-					async: false,
-					contentType: 'application/json',
-					accept: 'application/json',
-					data: JSON.stringify(dataToPost),
-					dataType: 'jsonp',
-					crossDomain: true,
-					// headers: {"Authorization":oauthHeaderValue},
-					success: function(data) {
-						alert("Success");
-					},
-					error: function() {
-						alert("Error occured.");
-					}
-				});
+				alert("Provisioning complete! The customer should be ready for pushing now.");
 			},
 			error: function() {
 				alert("Failed to get app.");
@@ -194,7 +157,7 @@ $(function () {
                                 data: <%= @customer.applications.to_json(:only => [:id, :name, :encodedCodeAtAppId, :platform]) %>,
                                 formatter: function (items) {
                                 	$.each(items, function(index, item) {
-                                		item.options = "<% if @customer.oauthToken %><button type='button' class='btn btn-primary' id='provision' onclick='doProvision(\"" + item.encodedCodeAtAppId + "\");'>Provision</button><%end%> <button type='button' class='btn btn-danger' id='delete' onclick='doDelete(\"" + item.encodedCodeAtAppId + "\");'>Delete</button>";
+                                		item.options = "<% if !@customer.oauthToken.nil? || @customer.oauthToken != '' %><button type='button' class='btn btn-primary' id='provision' onclick='doProvision(\"" + item.encodedCodeAtAppId + "\");'>Provision</button><%end%> <button type='button' class='btn btn-danger' id='delete' onclick='doDelete(\"" + item.encodedCodeAtAppId + "\");'>Delete</button>";
                                 	});
                                 },
                                 delay: 250
