@@ -14,6 +14,17 @@ Jewish people do funny things on Christmas. Don't worry - I will see a movie and
 What's new?
 -----------
 
+h3. Version 1.1
+
+Well, it's becoming dangerously close to a whole toolkit, for one. But some recent changes. 
+
+h4. app.yaml
+
+Settings? I love 'em. This uses Sinatra's settings module, so it's available in the contexts of Sinatra. 
+
+h4. Database Fixes
+
+There were some loading issues. They're resolved. 
 
 Why?
 ----
