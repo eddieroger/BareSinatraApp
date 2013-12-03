@@ -1,7 +1,0 @@
-name: mpsupport
-instances: 1
-framework:
-  type: rack
-mem: 128
-services:
-  postgresql-8f0ad: postgresql
