@@ -1,6 +1,6 @@
 <div class="container">
 	<div class="page-header">
-		<% if admin_mode? %>
+		<% if is_admin? %>
 		<div style="float: right;">
 			<%= link_to '/apps/new', "Add Application", {:class => "btn btn-primary"} %>
 			<%= link_to '/apps/version/new', "Add Version", {:class => "btn btn-primary"} %>
@@ -21,7 +21,9 @@
 			      <div class="caption">
 			        <h3>
 			        	<%= app.name %>
-			        	<% if admin_mode? %><%= link_to "/apps/#{app.id}/edit?admin", "Edit", {:class => "btn btn-sm btn-primary"} %><% end %>
+			        	<% if is_admin? %>
+			        	<br/><%= link_to "/apps/#{app.id}/edit?admin", "Edit", {:class => "btn btn-sm btn-primary"} %>
+			        	<% end %>
 			        </h3>
 			        <!-- <p height="40px"><%= app.description %></p> -->
 			        <p align="center">

@@ -16,7 +16,7 @@ module Sinatra
   	end
 
   	def admin_mode?
-  		return params.keys.include?("admin")
+  		return env['warden'].user.admin
   	end
 
   end

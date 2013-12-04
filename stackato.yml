@@ -1,0 +1,11 @@
+name: AppStore2
+instances: 1
+framework:
+  type: rack
+mem: 128
+services:
+  postgresql-a2bc6: postgresql
+hooks:
+  post-staging:
+    - ruby setup_admin.rb
+    

@@ -9,7 +9,7 @@ class Version
 	# Apple Stuff
 	property :bundle_identifier, 	String, :length => 200
 	property :bundle_version, 		String, :length => 10
-	property :encoded_ipa,			Binary, :length => 10485760 # 10mb
+	property :encoded_ipa,			Text, :length => 10485760 # 10mb
 	property :ipa_filename,			String, :length => 200
 
 	validates_presence_of :bundle_identifier, :if =>  lambda { |app| app.platform == :ios }
@@ -18,7 +18,7 @@ class Version
 	validates_presence_of :ipa_filename, :if => lambda { |app| app.platform == :ios }
 
 	# Android Stuff
-	property :encoded_apk, 			Binary, :length => 10485760 # 10mb
+	property :encoded_apk, 			Text, :length => 10485760 # 10mb
 	property :apk_filename,			String, :length => 200
 
 	validates_presence_of :encoded_apk, :if => lambda { |app| app.platform == :android }

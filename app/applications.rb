@@ -2,6 +2,8 @@ module BareApp
   class ApplicationApp < BareApp::Base
 
   	get '/version/new/?' do
+      is_authenticated?
+
   		@new = true
   		@applications = Application.all
   		@version = Version.new
@@ -9,6 +11,8 @@ module BareApp
   	end	
 
   	get '/new/?' do
+      is_authenticated?
+
   		@new = true
   		@app = Application.new
   		erb :"apps/form_app"
@@ -54,6 +58,8 @@ module BareApp
   	end
 
   	post '/version/?:version_id?' do
+      is_authenticated?
+      
   		@applications = Application.all
   		
   		if params[:version_id]
@@ -89,6 +95,8 @@ module BareApp
   	end
 
   	post '/:app_id?/?' do
+      is_authenticated?
+
   		@app = Application.first_or_create(:id => params[:app_id])
   		@app.name = params[:name]
 
