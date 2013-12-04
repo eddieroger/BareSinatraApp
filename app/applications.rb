@@ -42,11 +42,13 @@ module BareApp
         return Base64.decode64(@app.most_recent_ios_version.encoded_ipa)
   			
       when "icon"
-        puts 'icon'
         content_type :png
-
-        send_file File.join(APP_ROOT, '/public/img/x.png')
-
+        
+        if @app.icon
+          return Base64.decode64(@app.icon)
+        else
+          send_file File.join(APP_ROOT, '/public/img/x.png')
+        end
   		end
 
   	end

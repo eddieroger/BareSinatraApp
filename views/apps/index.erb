@@ -13,17 +13,18 @@
 
 	<div class="row">
 		<% @applications.each do |app| %>
+		<% next unless app.most_recent_ios_version || app.most_recent_android_version %>		
 			<!-- <div class="row">		 -->
 			  <div class="col-sm-6 col-sm-4 appbox">
 			    <div class="thumbnail">
-			      <img src="/img/x.png" width=200 height=200>
+			      <img src="/apps/<%=app.id%>/icon" width=200 height=200>
 			      <div class="caption">
 			        <h3>
 			        	<%= app.name %>
 			        	<% if admin_mode? %><%= link_to "/apps/#{app.id}/edit?admin", "Edit", {:class => "btn btn-sm btn-primary"} %><% end %>
 			        </h3>
 			        <!-- <p height="40px"><%= app.description %></p> -->
-			        <p>
+			        <p align="center">
 			        	<!-- "itms-services://?action=download-manifest&url=http://mydomain.com/test/myApp.plist" -->
 			        	<% if app.most_recent_ios_version %><a href="itms-services://?action=download-manifest&url=<%=request.scheme%>://<%=request.host%>/apps/<%=app.id%>/plist"><img src="/img/apple.png" height=75 width=75 alt="Tap to install for iOS" /></a><% end %>
 			        	<% if app.most_recent_android_version %><a href="/apps/<%= app.id %>/apk"><img src="/img/android.png" height=75 width=75  alt="Tap to install for Android" /></a><% end %>
