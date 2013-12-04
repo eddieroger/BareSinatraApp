@@ -4,6 +4,7 @@ module BareApp
     register Sinatra::ConfigFile
     register Sinatra::RespondWith
     helpers Sinatra::CsrfHelper
+    helpers Sinatra::BareAppHelper
 
     use Rack::Flash
 
@@ -21,6 +22,10 @@ module BareApp
       set :public_folder, 'public'
       enable :logging
       enable :session
+
+      mime_type :plist, 'application/xml'
+      mime_type :ipa, 'application/octet-stream'
+      mime_type :apk, 'application/vnd.android.package-archive'
     end
 
     use Warden::Manager do |manager|

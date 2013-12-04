@@ -3,7 +3,8 @@ module BareApp
 
 
     get '/' do
-      redirect '/customers'
+      # erb :"start/index"
+      redirect "/apps"
     end
 
     get '/protected' do

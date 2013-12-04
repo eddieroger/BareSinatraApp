@@ -10,7 +10,6 @@ use Rack::Session::Cookie, :secret => "pleasepleasepleasechangeme"
 
 run Rack::URLMap.new(
     '/'	=> BareApp::StartApp.new,
-    '/customers'       => BareApp::CustomersApp.new,
+    '/apps' 	=> BareApp::ApplicationApp,
     '/auth'		=> BareApp::AuthenticationApp.new
-
     )

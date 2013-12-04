@@ -1,0 +1,88 @@
+<div class="container">
+	<div class="row">
+		<div class="col-md-4">
+		<% if @new %>
+		<h1>New Version</h1>
+		<% else %>
+		<h1>Editing</h1>
+		<% end %>
+
+		<% if @version.errors.count > 0 %>
+		<div class="alert alert-error">
+			<p>The following errors need to be corrected:</p>
+			<ul>
+				<% @version.errors.each do |e| %>
+				<li><%= e[0] %></li>
+				<% end %>
+			</ul>
+		</div>
+		<% end %>
+
+		<form role="form" id="newVersionForm" action="/apps/version/<%=@version.id%>" method="post" enctype='multipart/form-data'>
+				<div class="form-group">
+					<label for="app_id">Application</label>
+					<select class="form-control" name="app_id" id="app_id">
+						<option value="">Please select an app:</option>
+						<% @applications.each do |app| %>
+						<option value="<%= app.id %>"><%= app.name %></option>
+						<% end %>
+					</select>
+				</div> 
+				<div class="form-group">
+					<label for="platform">Platform</label>
+					<select class="form-control" name="platform" id="platform">
+						<option <% if @version.platform == :ios %>checked<%end%> value="ios">iOS</option>
+						<option <% if @version.platform == :gcm %>checked<%end%> value="android">Android</option>
+					</select>
+				</div> 
+
+				<div id="ios">
+					<div class="form-group">
+						<label for="bundle_identifier">Bundle Identifier</label>
+						<input type="text" class="form-control" id="bundle_identifier" name="bundle_identifier" placeholder="com.exacttarget.internal.OrangeApp" value='<%= @version.bundle_identifier %>'>
+					</div> 
+					<div class="form-group">
+						<label for="bundle_version">Bundle Version</label>
+						<input type="text" class="form-control" id="bundle_version" name="bundle_version" placeholder="1.0" value='<%= @version.bundle_version %>'>
+					</div> 
+					<div class="form-group">
+						<label for="ipa_file">IPA File</label>
+						<input type="file" id="ipa_file" name="ipa_file"></input>
+					</div>
+				</div>
+
+				<div id="android">
+					<div class="form-group">
+						<label for="apk_file">APK File</label>
+						<input type="file" id="apk_file" name="apk_file"></input>
+					</div>
+				</div>
+
+		<!-- 		  
+			<div class="form-group">
+			    <label for="exampleInputFile">File input</label>
+			    <input type="file" id="exampleInputFile">
+			    <p class="help-block">Example block-level help text here.</p>
+			</div> 
+		-->
+			<input type="submit">
+		</form>
+		</div>
+	</div>
+</div>
+
+<script type="text/javascript">
+$(document).ready(function() {
+	console.log("Ready...");
+	$("#android").hide();
+	$("#platform").change(function() {
+		if ($(this).val() == 'ios') {
+			$("#ios").show();
+			$("#android").hide();
+		} else if ($(this).val() == 'android') {
+			$("#ios").hide();
+			$("#android").show();
+		}
+	});
+});
+</script>

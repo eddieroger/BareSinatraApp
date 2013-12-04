@@ -103,6 +103,7 @@ DEPENDENCIES
   data_mapper
   dm-postgres-adapter
   dm-serializer
+  dm-types
   httparty
   rack
   rack-contrib
