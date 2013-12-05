@@ -19,6 +19,8 @@ module BareApp
   	end
 
   	get '/:app_id/?:command?/?' do
+      is_authenticated?
+
   		@app = Application.get(params[:app_id])
   		# halt 404 unless !@app.nil?
 
@@ -114,11 +116,11 @@ module BareApp
   	end
 
     get '/' do
+      is_authenticated?
+      
     	@applications = Application.all
       	erb :"apps/index"
     end
-
-
 
   end
 end

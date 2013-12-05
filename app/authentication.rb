@@ -17,7 +17,7 @@ module BareApp
     post '/login' do
       # check credentials for login
       env['warden'].authenticate!
-      flash[:success] = "You have been logged in!"
+      # flash[:success] = "You have been logged in!"
       if env['rack.session']['return_to'] && env['rack.session']['return_to'] != '/auth/login'
         redirect(env['rack.session']['return_to'])
       else
@@ -42,30 +42,30 @@ module BareApp
     end
 
     ## Signup
-    get '/register' do
-      @new_user = true
-      @user = User.new
-      erb :"auth/signup"
-    end
+    # get '/register' do
+    #   @new_user = true
+    #   @user = User.new
+    #   erb :"auth/signup"
+    # end
 
-    post '/register' do
-      puts params
-      @new_user = true
-      @user = User.new(:email => params[:"user.email"],
-                        :password => params[:"user.password"],
-                        :password_confirmation => params[:"user.password_confirmation"],
-                        :first_name => params[:"user.first_name"],
-                        :last_name => params[:"user.last_name"])
+    # post '/register' do
+    #   puts params
+    #   @new_user = true
+    #   @user = User.new(:email => params[:"user.email"],
+    #                     :password => params[:"user.password"],
+    #                     :password_confirmation => params[:"user.password_confirmation"],
+    #                     :first_name => params[:"user.first_name"],
+    #                     :last_name => params[:"user.last_name"])
 
-      if @user.save
-        puts "Save worked"
-        redirect '/'
-      else
-        puts "Save failed"
-        puts @user
-        flash[:error] = @user.errors.full_messages.join("<br/>")
-        erb :"auth/signup"
-      end
-    end
+    #   if @user.save
+    #     puts "Save worked"
+    #     redirect '/'
+    #   else
+    #     puts "Save failed"
+    #     puts @user
+    #     flash[:error] = @user.errors.full_messages.join("<br/>")
+    #     erb :"auth/signup"
+    #   end
+    # end
   end
 end

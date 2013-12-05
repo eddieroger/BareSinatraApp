@@ -6,10 +6,6 @@ module BareApp
       # erb :"start/index"
       redirect "/apps"
     end
-
-    get '/protected' do
-      is_authenticated?
-      erb "Protected"
-    end
+    
   end
 end
