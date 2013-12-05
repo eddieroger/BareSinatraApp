@@ -12,8 +12,11 @@ test/tmp
 test/version_tmp
 tmp
 
+<<<<<<< HEAD
 .idea
 
+=======
+>>>>>>> 3b76a989f2d59bea86ed6a9dc494c852ff7d343e
 # YARD artifacts
 .yardoc
 _yardoc
