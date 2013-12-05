@@ -1,4 +1,5 @@
-require './init'
+require 'rubygems'
+require_relative './init'
 
 puts "Setting up administrator"
 admin = User.first(:email => 'admin') || User.new({:email => 'admin'})

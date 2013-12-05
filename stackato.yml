@@ -2,10 +2,10 @@ name: AppStore2
 instances: 1
 framework:
   type: rack
+  runtime: ruby19
 mem: 128
 services:
   postgresql-a2bc6: postgresql
 hooks:
-  post-staging:
-    - ruby setup_admin.rb
-    
+  pre-running:
+    - "-ruby setup_admin.rb"
