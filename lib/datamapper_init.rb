@@ -4,4 +4,4 @@
 
 
 ## TODO: If you are not using PostGRES, change this. It is based on Postgres.app from Heroku
-DataMapper.setup(:default, ENV['DATABASE_URL'] || "postgres://localhost/appstore")
+DataMapper.setup(:default, ENV['POSTGRESQL_URL'] || "postgres://localhost/appstore")

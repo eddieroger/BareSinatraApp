@@ -16,5 +16,7 @@ gem 'dm-postgres-adapter'
 gem 'dm-serializer'
 gem 'dm-types'
 
+gem 'redis'
+
 gem 'thin'
 gem 'shotgun'

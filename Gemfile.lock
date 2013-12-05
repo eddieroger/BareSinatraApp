@@ -73,6 +73,7 @@ GEM
       rack (>= 1.0)
     rack_csrf (2.4.0)
       rack (>= 0.9)
+    redis (3.0.6)
     shotgun (0.9)
       rack (>= 1.0)
     sinatra (1.4.4)
@@ -109,6 +110,7 @@ DEPENDENCIES
   rack-contrib
   rack-flash3
   rack_csrf
+  redis
   shotgun
   sinatra
   sinatra-contrib

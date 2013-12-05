@@ -1,6 +1,11 @@
 module BareApp
   class ApplicationApp < BareApp::Base
 
+    
+    before do
+      authenticate!
+    end
+
   	get '/version/new/?' do
       is_authenticated?
 

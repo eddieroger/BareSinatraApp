@@ -18,7 +18,7 @@ module Sinatra
       end
 
       def authenticate!(*args)
-        env['warden'].authenticate!
+        env['warden'].authenticate! # (:token, :password, :cookie)
       end
 
       def current_user
