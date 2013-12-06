@@ -4,7 +4,7 @@ class Application
 	has n, :versions, :constraint => :destroy!
 
 	property :id,		Serial
-	property :name, 	String, 	:required => true
+	property :name, 	String, 	:required => true, :unique => true
 	property :description, Text
 	property :icon, 	Text, :length => 10485760 # 10 mb
 

@@ -5,7 +5,7 @@
 Warden::Strategies.add(:password) do
   def valid?
     puts "Password valid?"
-    puts "Password authenticate with params:#{params}"
+    # puts "Password authenticate with params:#{params}"
 
     if params["email"] && params["password"]
       puts "YES!"
@@ -20,7 +20,7 @@ Warden::Strategies.add(:password) do
     # user = Datastore.for(:user).find_by_email(params["email"])
     # if user && user.authenticate(params["password"])
     #   success!(user)
-    puts "Password authenticate with params:#{params}"
+    # puts "Password authenticate with params:#{params}"
 
     user = User.authenticate(params['email'], params['password'], params['remember_me'])
     if user

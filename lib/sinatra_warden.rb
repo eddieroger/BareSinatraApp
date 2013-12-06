@@ -34,6 +34,7 @@ module Sinatra
       end
 
       def is_admin?
+        puts env['warden'].user
         if env['warden'].user
           return env['warden'].user.admin
         else

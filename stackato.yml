@@ -8,4 +8,4 @@ services:
   postgresql-a2bc6: postgresql
 hooks:
   pre-running:
-    - "-ruby setup_admin.rb"
+    - ruby scripts/setup_admin.rb

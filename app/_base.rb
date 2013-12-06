@@ -22,8 +22,8 @@ module BareApp
       set :public_folder, 'public'
       enable :logging
       enable :session
-      enable :protection
-      
+
+      disable :protection      
       use Rack::Protection, except: :http_origin
       use Rack::Protection::HttpOrigin, origin_whitelist: ["https://appstore.qa.marketingcloudapps.com"]
 

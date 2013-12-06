@@ -51,9 +51,9 @@ module BareApp
         return Base64.decode64(@app.most_recent_ios_version.encoded_ipa)
 
   		when "apk"
-        content_type :ipa
-        headers["Content-Disposition"] = "attachment;filename=#{@app.most_recent_ios_version.apk_filename || 'app.apk'}"
-        return Base64.decode64(@app.most_recent_ios_version.encoded_ipa)
+        content_type :apk
+        headers["Content-Disposition"] = "attachment;filename=#{@app.most_recent_android_version.apk_filename || 'app.apk'}"
+        return Base64.decode64(@app.most_recent_android_version.encoded_apk)
   			
       when "icon"
         content_type :png
