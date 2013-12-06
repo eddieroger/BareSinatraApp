@@ -1,22 +1,25 @@
 module BareApp
   class ApplicationApp < BareApp::Base
-
-    
+ 
     before do
-      authenticate!
+      authenticate! unless warden.authenticated?
+      @sessionToken = AuthenticationTokens.instance.generate_for_request(request) unless !warden.authenticated?
+
     end
 
   	get '/version/new/?' do
       is_authenticated?
+      redirect '/' unless is_admin?
 
   		@new = true
-  		@applications = Application.all
+  		@applications = Application.all(:order => [ :name ])
   		@version = Version.new
   		erb :"apps/form_version"
   	end	
 
   	get '/new/?' do
       is_authenticated?
+      redirect '/' unless is_admin?
 
   		@new = true
   		@app = Application.new
@@ -64,8 +67,9 @@ module BareApp
 
   	end
 
-  	post '/version/?:version_id?' do
+  	post '/version/?:version_id?/?new?' do
       is_authenticated?
+      redirect '/' unless is_admin?
       
   		@applications = Application.all
   		
@@ -75,9 +79,9 @@ module BareApp
   			puts params
   			@version = Version.new
   			@version.application = Application.get(params[:app_id])
-  			@version.platform = params[:platform]
+  			@version.version_number = params[:version_number]
+        @version.platform = params[:platform]
   			@version.bundle_identifier = params[:bundle_identifier]
-  			@version.bundle_version = params[:bundle_version]
 
   			@version.encoded_ipa = Base64.encode64(params[:ipa_file][:tempfile].read) unless params[:ipa_file].nil?
         @version.ipa_filename = params[:ipa_file][:filename] unless params[:ipa_file].nil?
@@ -88,7 +92,7 @@ module BareApp
   			if @version.valid?
   				if @version.save
   					status 201
-  					return "Saved"
+  					redirect '/admin/apps'
   				else
   					halt 500
   				end
@@ -101,16 +105,19 @@ module BareApp
 
   	end
 
-  	post '/:app_id?/?' do
+  	post '/:app_id?' do
       is_authenticated?
+      redirect '/' unless is_admin?
 
   		@app = Application.first_or_create(:id => params[:app_id])
   		@app.name = params[:name]
+      @app.description = params[:description]
+      @app.icon = Base64.encode64(params[:icon_file][:tempfile].read) unless params[:icon_file].nil?
 
   		if @app.valid?
   			if @app.save
   				status 201	
-  				redirect '/apps?admin'
+  				redirect '/admin/apps'
   			else	
   				halt 500
   			end

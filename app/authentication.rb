@@ -41,6 +41,11 @@ module BareApp
       redirect '/auth/login'
     end
 
+    get '/unauthenticated/?' do
+      # "Unauthenticated"
+      redirect '/auth/login'
+    end
+
     ## Signup
     # get '/register' do
     #   @new_user = true

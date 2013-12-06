@@ -5,11 +5,12 @@ Bundler.setup
 require './init'
 
 use Rack::Cookies # For rememberable warden strategy
-use Rack::Session::Cookie, :secret => "pleasepleasepleasechangeme"
+use Rack::Session::Cookie, :secret => "youarenowchangedlikeasaperson123"
 
 
 run Rack::URLMap.new(
     '/'	=> BareApp::StartApp.new,
-    '/apps' 	=> BareApp::ApplicationApp,
+    '/apps' 	=> BareApp::ApplicationApp.new,
+    '/admin'	=> BareApp::AdminApp.new,
     '/auth'		=> BareApp::AuthenticationApp.new
     )

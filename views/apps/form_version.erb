@@ -18,7 +18,8 @@
 		</div>
 		<% end %>
 
-		<form role="form" id="newVersionForm" action="/apps/version/<%=@version.id%>" method="post" enctype='multipart/form-data'>
+		<form role="form" id="newVersionForm" action="/apps/version/<%=@version.id%><% if @version.id%>/<% end %>new" method="post" enctype='multipart/form-data'>
+			<%= csrf_tag %>
 				<div class="form-group">
 					<label for="app_id">Application</label>
 					<select class="form-control" name="app_id" id="app_id">
@@ -29,21 +30,20 @@
 					</select>
 				</div> 
 				<div class="form-group">
+					<label for="version_number">Version Number</label>
+					<input type="text" class="form-control" id="version_number" name="version_number" placeholder="1.0" value='<%= @version.version_number %>'>
+				</div> 
+				<div class="form-group">
 					<label for="platform">Platform</label>
 					<select class="form-control" name="platform" id="platform">
 						<option <% if @version.platform == :ios %>checked<%end%> value="ios">iOS</option>
 						<option <% if @version.platform == :gcm %>checked<%end%> value="android">Android</option>
 					</select>
-				</div> 
-
+				</div>
 				<div id="ios">
 					<div class="form-group">
 						<label for="bundle_identifier">Bundle Identifier</label>
 						<input type="text" class="form-control" id="bundle_identifier" name="bundle_identifier" placeholder="com.exacttarget.internal.OrangeApp" value='<%= @version.bundle_identifier %>'>
-					</div> 
-					<div class="form-group">
-						<label for="bundle_version">Bundle Version</label>
-						<input type="text" class="form-control" id="bundle_version" name="bundle_version" placeholder="1.0" value='<%= @version.bundle_version %>'>
 					</div> 
 					<div class="form-group">
 						<label for="ipa_file">IPA File</label>

@@ -18,7 +18,8 @@
 		</div>
 		<% end %>
 
-		<form role="form" id="newCustomerForm" action="/apps/<%=@app.id%>" method="post">
+		<form role="form" id="newCustomerForm" action="/apps/<%=@app.id%>" method="post" enctype='multipart/form-data'>
+			<%= csrf_tag %>
 			<div class="form-group">
 				<label for="name">App Name</label>
 				<input type="text" class="form-control" id="name" name="name" placeholder="The Orange App" value='<%= @app.name %>'>
@@ -27,14 +28,10 @@
 				<label for="description">Brief Description</label>
 				<input type="text" class="form-control" id="description" name="description" placeholder="This app is great." value='<%= @app.description %>'>
 			</div> 	
-
-		<!-- 		  
 			<div class="form-group">
-			    <label for="exampleInputFile">File input</label>
-			    <input type="file" id="exampleInputFile">
-			    <p class="help-block">Example block-level help text here.</p>
-			</div> 
-		-->
+				<label for="icon_file">Icon</label>
+				<input type="file" id="icon_file" name="icon_file"></input>
+			</div>
 			<input type="submit">
 		</form>
 		</div>

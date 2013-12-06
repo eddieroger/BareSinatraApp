@@ -22,6 +22,10 @@ module BareApp
       set :public_folder, 'public'
       enable :logging
       enable :session
+      enable :protection
+      
+      use Rack::Protection, except: :http_origin
+      use Rack::Protection::HttpOrigin, origin_whitelist: ["https://appstore.qa.marketingcloudapps.com"]
 
       mime_type :plist, 'application/xml'
       mime_type :ipa, 'application/octet-stream'
@@ -29,7 +33,7 @@ module BareApp
     end
 
     use Warden::Manager do |manager|
-      manager.default_strategies :token, :cookie, :password
+      manager.default_strategies :cookie, :token, :password
       manager.failure_app = BareApp::AuthenticationApp
       manager.serialize_into_session {|user| user.id}
       manager.serialize_from_session {|id| User.get(id)}
@@ -37,8 +41,7 @@ module BareApp
 
     before do
       @app_name = settings.app_name
-      puts "Request incoming from #{request.ip} to #{request.url} with params: #{params}"
-      @sessionToken = AuthenticationTokens.instance.generate_for_request(request)
+      puts "Request #{request.request_method} incoming from #{request.ip} to #{request.url} with params: #{params}"
     end
 
   end # Base

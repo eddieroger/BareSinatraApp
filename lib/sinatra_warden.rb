@@ -27,7 +27,7 @@ module Sinatra
 
       def is_authenticated?
         if !warden.authenticated?
-
+          puts "not authenticated"
           env['rack.session']['redirect_to'] = request.path
           redirect '/auth/login'
         end
