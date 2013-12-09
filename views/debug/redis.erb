@@ -1,0 +1,15 @@
+<div class="container">
+	<div class="page_header">
+		<h1>Active Keys</h1>
+	</div>
+
+	<% @all_data.keys.each do |k| %>
+		<h2>Key: <%= k %></h2>
+		<ul>
+			<% @all_data[k].each do |v| %>
+				<li><%= v %></li>
+			<% end %>
+		</ul>
+	<% end %>
+
+</div>

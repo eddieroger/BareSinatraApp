@@ -130,7 +130,7 @@ module BareApp
     get '/' do
       is_authenticated?
       
-    	@applications = Application.all
+    	@applications = Application.all(:order => [ :name ])
       	erb :"apps/index"
     end
 

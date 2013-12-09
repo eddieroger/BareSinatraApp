@@ -1,0 +1,44 @@
+<div class="container">
+	<div class="page_header">
+		<div style="float: right;">
+			<%= link_to '/apps/new', "Add Application", {:class => "btn btn-primary"} %>
+			<%= link_to '/apps/version/new', "Add Version", {:class => "btn btn-primary"} %>
+		</div>
+		<h1>Application Maintenance</h1>
+	</div>
+
+	<% if @apps.count == 0 %>
+		<h2 align="center" style="margin-top: 100px;">No apps exist.<br/>Why not <%= link_to "/apps/new","make an app" %> or <%= link_to "/apps/version/new", "add a version"%>.</h2>
+	<% else %>
+
+	<table class="table table-hover table-bordered">
+		<thead>
+			<tr>
+				<th>Application</th>
+				<th>Version</th>
+				<th>Platform</th>
+				<th>Uploaded</th>
+				<th>Options</th>
+			</tr>
+		</thead>
+
+		<tbody>
+		<% @apps.each do |app| %>
+			<% app.versions.each do |version| %>
+				<tr>
+					<td><%= app.name %></td>
+					<td><%= version.version_number %></td>
+					<td><%= version.platform %></td>
+					<td><%= version.created_at.nil? ? "Unknown" : version.created_at.strftime("%Y-%m-%d %H:%m") %></td>
+					<td>Delete</td>
+				</tr>
+			<% end %>
+		<% end %>
+		</tbody>
+	</table>
+
+	<% end %>
+	
+
+
+</div>
