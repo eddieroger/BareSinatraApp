@@ -26,7 +26,7 @@
 			        <p align="center">
 			        	<!-- "itms-services://?action=download-manifest&url=http://mydomain.com/test/myApp.plist" -->
 			        	<% if app.most_recent_ios_version %><a href="itms-services://?action=download-manifest&url=<%=request.scheme%>://<%=request.host%>/apps/<%=app.id%>/plist%3FauthToken%3D<%=@sessionToken%>"><img src="/img/apple.png" height=75 width=75 alt="Tap to install for iOS" /></a><% end %>
-			        	<% if app.most_recent_android_version %><a href="/apps/<%= app.id %>/apk%3FauthToken%3D<%=@sessionToken%>"><img src="/img/android.png" height=75 width=75  alt="Tap to install for Android" /></a><% end %>
+			        	<% if app.most_recent_android_version %><a href="/apps/<%= app.id %>/apk?authToken=<%=@sessionToken%>"><img src="/img/android.png" height=75 width=75  alt="Tap to install for Android" /></a><% end %>
 			        </p>
 			      </div>
 			    </div>
