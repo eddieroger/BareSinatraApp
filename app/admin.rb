@@ -24,6 +24,11 @@ module BareApp
     	@apps = Application.all(:order => [ :name ])
     	erb :"debug/apps"
     end
+
+    get '/tokens' do
+      @apps = Application.all(:order => [:name])
+      erb :"debug/tokens"
+    end
     
   end
 end

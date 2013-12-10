@@ -9,3 +9,4 @@ services:
 hooks:
   pre-running:
     - ruby scripts/setup_admin.rb
+    - ruby scripts/token_generator.rb

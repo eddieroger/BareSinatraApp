@@ -1,4 +1,3 @@
-<% MEGABYTE = 1024.0 * 1024.0 %>
 <div class="container">
 	<div class="page_header">
 		<div style="float: right;">
@@ -30,7 +29,6 @@
 		<% @apps.each do |app| %>
 			<% app.versions.each do |version| %>
 				<tr>
-					<td><%= app.id %></td>
 					<td><%= app.name %></td>
 					<td><%= version.version_number %></td>
 					<td>
@@ -38,7 +36,7 @@
 						<% if version.platform == :android %><%= (version.encoded_apk.length / MEGABYTE).round(2) %> mb <% end %>
 					</td>	
 					<td><%= version.platform %></td>
-					<td><%= app.apiToken.token || "Not Generated" %></td>
+					<td><%= app.apitoken.token %></td>
 					<td><%= version.created_at.nil? ? "Unknown" : version.created_at.strftime("%Y-%m-%d %H:%m") %></td>
 					<td>Delete</td>
 				</tr>

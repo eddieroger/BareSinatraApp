@@ -33,7 +33,7 @@ module BareApp
     end
 
     use Warden::Manager do |manager|
-      manager.default_strategies :cookie, :token, :password
+      manager.default_strategies :cookie, :token, :password, :api
       manager.failure_app = BareApp::AuthenticationApp
       manager.serialize_into_session {|user| user.id}
       manager.serialize_from_session {|id| User.get(id)}
@@ -42,6 +42,7 @@ module BareApp
     before do
       @app_name = settings.app_name
       puts "Request #{request.request_method} incoming from #{request.ip} to #{request.url} with params: #{params}"
+      puts "\tUser-Agent: #{request.user_agent}"
     end
 
   end # Base

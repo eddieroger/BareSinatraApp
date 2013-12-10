@@ -113,6 +113,12 @@ module BareApp
   		@app.name = params[:name]
       @app.description = params[:description]
       @app.icon = Base64.encode64(params[:icon_file][:tempfile].read) unless params[:icon_file].nil?
+      if @app.apiToken.nil?
+        token = ApiToken.new
+        token.token = ApiToken.get_new_token
+        token.application = @app
+        token.save
+      end
 
   		if @app.valid?
   			if @app.save

@@ -2,6 +2,7 @@ class Application
 	include DataMapper::Resource
 
 	has n, :versions, :constraint => :destroy!
+	has 1, :apiToken
 
 	property :id,		Serial
 	property :name, 	String, 	:required => true, :unique => true

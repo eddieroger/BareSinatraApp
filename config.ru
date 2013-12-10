@@ -12,5 +12,6 @@ run Rack::URLMap.new(
     '/'	=> BareApp::StartApp.new,
     '/apps' 	=> BareApp::ApplicationApp.new,
     '/admin'	=> BareApp::AdminApp.new,
+    '/device' 	=> BareApp::DeviceApp.new,
     '/auth'		=> BareApp::AuthenticationApp.new
     )
