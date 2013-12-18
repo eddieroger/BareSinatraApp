@@ -7,6 +7,12 @@ module BareApp
 
     end
 
+    get '/help' do
+      is_authenticated?
+
+      erb :"apps/help"
+    end
+
   	get '/version/new/?' do
       is_authenticated?
       redirect '/' unless is_admin?

@@ -5,6 +5,7 @@
   <!-- Latest compiled and minified CSS -->
   <link href="//netdna.bootstrapcdn.com/bootstrap/3.0.2/css/bootstrap.min.css" rel="stylesheet">
   <link href="/css/site.css" rel="stylesheet">  
+
   <!-- Latest compiled and minified JavaScript -->
   <script src="https://code.jquery.com/jquery.js"></script>
   <script src="//netdna.bootstrapcdn.com/bootstrap/3.0.2/js/bootstrap.min.js"></script>
@@ -21,10 +22,11 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-          <a class="navbar-brand" href="/"><%= settings.app_name %> <% if is_admin? %><span class="label label-danger">Admin Mode</span><% end %></a>
+          <a class="navbar-brand" href="/"><%= settings.app_name %> <% if is_admin? %><span class="label label-danger hidden-phone">Admin Mode</span><% end %></a>
         </div>
         <div class="collapse navbar-collapse">
           <ul class="nav navbar-nav">
+            <!-- <li><a href="/apps/help">Help</a></li> -->
             <% if is_admin? %>
             <!-- <li class="active"><a href="/apps">Home</a></li> -->
             <li><a href="/admin/apps">App Maintenance</a></li>

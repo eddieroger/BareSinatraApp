@@ -6,15 +6,28 @@ html, body {height: 100%;}
 }
 
 .navbar-brand {
-    font-size: 24px;
     font-weight: bold;
-    text-shadow: 2px 2px #333333;
     color: #FFFFFF;
 }
 
 .navbar-brand:hover{
-    font-size: 24px;
     font-weight: bold;
-    text-shadow: 2px 2px #333333;
     color: #FFFFFF;
+}
+
+.navbar-toggle .icon-bar {
+  display: block;
+  width: 22px;
+  height: 2px;
+  background-color: #000000;
+  border-radius: 1px;
+}
+
+.startHidden {
+  display: none;
+}
+
+.helplink {
+  color: #0000FF;
+  text-decoration: underline;;
 }
