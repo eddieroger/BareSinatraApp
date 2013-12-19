@@ -1,7 +1,7 @@
 class ApiToken
 	include DataMapper::Resource
 
-	belongs_to :application
+	belongs_to :user
 
 	property :id,		Serial
 	property :token, 	String, 	:required => true, :unique => true

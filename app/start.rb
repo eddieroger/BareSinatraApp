@@ -3,8 +3,7 @@ module BareApp
 
 
     get '/' do
-      # erb :"start/index"
-      redirect "/apps"
+      erb :"start/index"
     end
     
   end

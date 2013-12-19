@@ -4,14 +4,10 @@
 
 Warden::Strategies.add(:api) do
   def valid?
-    puts "API valid?"
-    # puts "Token authenticate with params:#{params}"
 
     if params["accessToken"]
-      puts "YES!"
       return true
     else
-      puts "NO!"
       return false
     end
   end
@@ -23,7 +19,7 @@ Warden::Strategies.add(:api) do
     # puts "Token authenticate with params:#{params}"
 
     if ApiToken.authenticate(params["accessToken"])
-      success!(User.first(:email => 'exacttarget'))
+      success!(User.new)
     else
       fail!("Token Authentication Failed")
     end

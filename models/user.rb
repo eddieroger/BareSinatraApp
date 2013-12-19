@@ -20,6 +20,8 @@ class User
   property :remember_token,  String
   property :created_at,   DateTime
 
+  has 1, :apiToken
+
   attr_accessor :password_confirmation
   validates_confirmation_of :password, :if => :password_required?
 
