@@ -1,5 +1,5 @@
-source "https://rubygems.org"
-# ruby "2.0.0"
+source 'https://rubygems.org'
+ruby "2.0.0"
 
 gem 'sinatra'
 gem 'sinatra-contrib'
@@ -9,14 +9,9 @@ gem 'rack-contrib'
 gem 'rack_csrf'
 gem 'warden'
 
-gem 'httparty'
-
-gem 'data_mapper'
-gem 'dm-postgres-adapter'
-gem 'dm-serializer'
-gem 'dm-types'
-
-gem 'redis'
+gem 'pg'
+gem 'activerecord'
+gem 'sinatra-activerecord'
 
 gem 'thin'
 gem 'shotgun'
