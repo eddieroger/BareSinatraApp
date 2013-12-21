@@ -4,14 +4,14 @@
 
 Warden::Strategies.add(:password) do
   def valid?
-    puts "Password valid?"
+    # puts "Password valid?"
     # puts "Password authenticate with params:#{params}"
 
-    if params["email"] && params["password"]
-      puts "YES!"
+    if params["username"] && params["password"]
+      # puts "YES!"
       return true
     else
-      puts "NO!"
+      # puts "NO!"
       return false
     end
   end
@@ -22,7 +22,7 @@ Warden::Strategies.add(:password) do
     #   success!(user)
     # puts "Password authenticate with params:#{params}"
 
-    user = User.authenticate(params['email'], params['password'], params['remember_me'])
+    user = User.find_by(username: params["username"]).try(:authenticate, params["password"])
     if user
       success!(user)
     else

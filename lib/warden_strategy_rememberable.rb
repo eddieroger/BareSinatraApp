@@ -5,13 +5,13 @@
 
 Warden::Strategies.add(:cookie) do
   def valid?
-    puts "Remember Me?"
+    # puts "Remember Me?"
 
     if env['rack.cookies']['user.remember.token']
-      puts "YES"
+      # puts "YES"
       return true
     else
-      puts "NO"
+      # puts "NO"
       return false
     end # if
   end # valid?

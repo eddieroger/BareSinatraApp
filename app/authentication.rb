@@ -36,7 +36,7 @@ module BareApp
     end
 
     post '/unauthenticated/?' do
-      puts "Unauthenticaeted"
+      # puts "Unauthenticaeted"
       flash[:error] = "Failed to log in"
       redirect '/auth/login'
     end

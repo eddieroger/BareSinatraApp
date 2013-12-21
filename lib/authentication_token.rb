@@ -50,7 +50,7 @@
 		end
 
 		def validate_token(request, token)
-			puts "Validating token #{token}"
+			# puts "Validating token #{token}"
 			@redis.expire(token_key(request), FIVE_MINUTES)
 			@redis.smembers(token_key(request)).include?(token) || @redis.smembers(android_token_key(request)).include?(token) || @redis.smembers(ios_token_key(request)).include?(token)
 		end
