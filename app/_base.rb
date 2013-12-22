@@ -41,7 +41,11 @@ module BareApp
 
     before do
       @app_name = settings.app_name
-      puts "Request #{request.request_method} incoming from #{request.ip} to #{request.url} with params: #{params}"
+        if request.path.include?('login') && request.request_method == 'POST'
+          puts "Request POST - Login request. Not logged."
+        else
+          puts "Request #{request.request_method} incoming from #{request.ip} to #{request.url} with params: #{params}"
+        end
       # puts "\tUser-Agent: #{request.user_agent}"
     end
 

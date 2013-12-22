@@ -18,7 +18,7 @@ ActiveRecord::Schema.define(version: 20131220200915) do
 
   create_table "apitokens", id: :uuid, default: "uuid_generate_v4()", force: true do |t|
     t.string   "token"
-    t.boolean  "active"
+    t.boolean  "active",     default: true
     t.datetime "created_at"
     t.datetime "updated_at"
   end
