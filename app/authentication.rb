@@ -11,7 +11,8 @@ module BareApp
       if env['warden'].authenticated?
         return "Hello"
       end
-      erb :"auth/login", :layout => :authentication_app
+      # erb :"auth/login", :layout => :authentication_app
+      haml :'auth/login', :layout => :auth
     end
 
     post '/login' do

@@ -3,7 +3,7 @@ module BareApp
 
 
     get '/' do
-      erb :"start/index"
+      haml :"start/index"
     end
     
   end

@@ -1,6 +1,10 @@
 /* EddieRoger.com Site-Specific CSS*/
 html, body {height: 100%;}
 
+body {
+  padding-top: 50px;
+}
+
 .nav a {
     color: #FFFFFF;
 }

@@ -23,6 +23,8 @@ GEM
     builder (3.1.4)
     daemons (1.1.9)
     eventmachine (1.0.3)
+    haml (4.0.4)
+      tilt
     i18n (0.6.5)
     minitest (4.7.5)
     multi_json (1.8.2)
@@ -71,6 +73,7 @@ PLATFORMS
 DEPENDENCIES
   activerecord
   bcrypt-ruby
+  haml
   pg
   rack
   rack-contrib

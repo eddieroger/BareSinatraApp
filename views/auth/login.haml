@@ -1,0 +1,6 @@
+%form.form-signin{:action => '/auth/login', :method => 'post'}
+	= csrf_tag
+	%h2.form-signin-heading Please Log In
+	%input.input-block-level{:type => 'text', :id => 'username', :name => 'username', :placeholder => 'Username'}
+	%input.input-block-level{:type => 'password', :id => 'password', :name => 'password', :placeholder => 'Password'}
+	%button.btn.btn-large.btn-primary{:type => 'submit'} Log In
