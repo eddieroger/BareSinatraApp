@@ -34,6 +34,8 @@ GEM
       rack (>= 0.9.1)
     rack-flash3 (1.0.5)
       rack
+    rack-parser (0.6.0)
+      rack
     rack-protection (1.5.1)
       rack
     rack-test (0.6.2)
@@ -56,6 +58,8 @@ GEM
       rack-test
       sinatra (~> 1.4.0)
       tilt (~> 1.3)
+    sinatra-respond_to (0.9.0)
+      sinatra (~> 1.3)
     thin (1.6.1)
       daemons (>= 1.0.9)
       eventmachine (>= 1.0.0)
@@ -78,10 +82,12 @@ DEPENDENCIES
   rack
   rack-contrib
   rack-flash3
+  rack-parser
   rack_csrf
   shotgun
   sinatra
   sinatra-activerecord
   sinatra-contrib
+  sinatra-respond_to
   thin
   warden

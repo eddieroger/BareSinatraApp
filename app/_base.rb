@@ -2,7 +2,7 @@ module BareApp
   class Base < Sinatra::Base
     register Sinatra::Warden
     register Sinatra::ConfigFile
-    register Sinatra::RespondWith
+    register Sinatra::RespondTo
     helpers Sinatra::CsrfHelper
     helpers Sinatra::BareAppHelper
 
@@ -23,13 +23,6 @@ module BareApp
       enable :logging
       enable :session
 
-      disable :protection      
-      use Rack::Protection, except: :http_origin
-      use Rack::Protection::HttpOrigin, origin_whitelist: ["https://appstore.qa.marketingcloudapps.com"]
-
-      mime_type :plist, 'application/xml'
-      mime_type :ipa, 'application/octet-stream'
-      mime_type :apk, 'application/vnd.android.package-archive'
     end
 
     use Warden::Manager do |manager|

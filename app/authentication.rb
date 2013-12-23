@@ -19,11 +19,18 @@ module BareApp
       # check credentials for login
       env['warden'].authenticate!
       # flash[:success] = "You have been logged in!"
-      if env['rack.session']['return_to'] && env['rack.session']['return_to'] != '/auth/login'
-        redirect(env['rack.session']['return_to'])
-      else
-        redirect('/')
+
+      respond_to do |format|
+        format.html {
+                if env['rack.session']['return_to'] && env['rack.session']['return_to'] != '/auth/login'
+                 redirect(env['rack.session']['return_to'])
+                else
+                  redirect('/')
+                end
+                }
+        format.json { do_json_login }
       end
+
     end
 
     get '/logout' do
@@ -37,14 +44,29 @@ module BareApp
     end
 
     post '/unauthenticated/?' do
-      # puts "Unauthenticaeted"
-      flash[:error] = "Failed to log in"
-      redirect '/auth/login'
+      respond_to do |format|
+        format.html {
+          flash[:error] = "Failed to log in"
+          redirect '/auth/login'
+        }
+        format.json {
+          status 401
+          {:error => "Login failed."}.to_json
+        }
+      end
     end
 
     get '/unauthenticated/?' do
-      # "Unauthenticated"
-      redirect '/auth/login'
+      respond_to do |format|
+        format.html {
+          flash[:error] = "Failed to log in"
+          redirect '/auth/login'
+        }
+        format.json {
+          status 401
+          {:error => "Login failed."}.to_json
+        }
+      end
     end
 
     ## Signup
@@ -73,5 +95,19 @@ module BareApp
     #     erb :"auth/signup"
     #   end
     # end
+
+    private
+
+    def do_html_login
+      
+    end
+
+    def do_json_login
+      user = env['warden'].user
+      appname = params[:application] || "Unknown App"
+      token = ApiToken.new(user: user, name: appname, token: ApiToken.get_new_token(32))
+      token.save
+      {:user => {:username => user.username, :accessToken => token.token}}.to_json
+    end
   end
 end

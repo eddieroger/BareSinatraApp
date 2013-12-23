@@ -4,15 +4,21 @@ class ApiToken < ActiveRecord::Base
 
 
 	def self.authenticate(accessToken)
-		if ApiToken.first(:token => accessToken)
-			return true
+		token = ApiToken.where(token: accessToken, active: true).first
+		if token
+			return token.user
 		else
 			return false
 		end
+		# if ApiToken.first(:token => accessToken)
+		# 	return true
+		# else
+		# 	return false
+		# end
 	end
 
-	def self.get_new_token
-		SecureRandom.uuid
+	def self.get_new_token(length)
+		SecureRandom.urlsafe_base64(length)
 	end
 
 end

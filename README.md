@@ -54,5 +54,5 @@ Credits, Inspiration and Further Reading
 For the most part, things are attributed in the source. But for more overreaching things, it's hard to find one place. So, they go here.
 
 + **The Sinatra Book** - [http://sinatra-book.gittr.com/](http://sinatra-book.gittr.com/)
-+ *DataMapper ** - [http://datamapper.org/](http://datamapper.org/)
++ **DataMapper ** - [http://datamapper.org/](http://datamapper.org/)
 + **CSRF Protection ** - [http://stackoverflow.com/questions/11451161/sinatra-csrf-authenticity-tokens](http://stackoverflow.com/questions/11451161/sinatra-csrf-authenticity-tokens)

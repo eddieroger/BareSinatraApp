@@ -10,17 +10,19 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20131220200915) do
+ActiveRecord::Schema.define(version: 20131222135837) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
   enable_extension "uuid-ossp"
 
-  create_table "apitokens", id: :uuid, default: "uuid_generate_v4()", force: true do |t|
+  create_table "api_tokens", id: :uuid, default: "uuid_generate_v4()", force: true do |t|
     t.string   "token"
+    t.string   "name"
     t.boolean  "active",     default: true
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.uuid     "user_id"
   end
 
   create_table "users", id: :uuid, default: "uuid_generate_v4()", force: true do |t|
